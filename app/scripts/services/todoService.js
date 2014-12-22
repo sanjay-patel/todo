@@ -5,19 +5,20 @@ angular.module('todoApp')
     var isloaded = false, todos = [];
     
     var setLoaded = function(val) {
-        isloaded = true;    
-    }
+        isloaded = val;    
+    };
+    
     var getLoaded = function() {
         return isloaded;
-    }
+    };
     
     var add = function(val) {
         todos.push(val);    
-    }
+    };
     
     var getAll = function () {
         return todos;
-    }
+    };
     
     var getFromAPI = function() {
             var request = $http({
@@ -29,21 +30,21 @@ angular.module('todoApp')
             request.then(function(response) {
                 if (response.status === 200) {
                     var data = response.data;
-                    angular.forEach(data, function(val, index) {
+                    angular.forEach(data, function(val) {
                         add(val);
-                    })
+                    });
                 } else {
-                    alert('Error in api call');
+                    window.alert('Error in api call');
                 }
             
                 
 	        }, function(data) {
-                alert('Error in api call');
+                window.alert('Error in api call');
                 return data;
             });
     
             return request;                        
-    } //end of get all
+    }; //end of get all
     
     return {
         getFromAPI: getFromAPI,
@@ -51,6 +52,6 @@ angular.module('todoApp')
         getLoaded: getLoaded,
         getAll: getAll,
         add: add
-    }
+    };
     
-})
+});

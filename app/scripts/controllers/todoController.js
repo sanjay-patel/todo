@@ -14,7 +14,7 @@ angular.module('todoApp')
         $scope.todoList = todoService.getAll();
         
         $scope.edit = function(id) {
-            //$state.transitionTo('todo-add', {id: id});    
-        }
+            $state.transitionTo('todo-add', {id: id});    
+        };
         
     }]);

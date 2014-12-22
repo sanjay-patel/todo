@@ -14,7 +14,7 @@ angular.module('todoApp')
         if (angular.isDefined(id)) {
             mode = 'Update';
         } else {
-            mode = 'Add'
+            mode = 'Add';
         }    
         
         $scope.assignees = [

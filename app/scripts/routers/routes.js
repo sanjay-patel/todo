@@ -19,7 +19,7 @@ angular.module('todoApp')
                 }
             })
             .state('todo-add', {
-                url: '/todo/add',
+                url: '/todo/add/:id',
                 controller: 'todoAddController',
                 templateUrl: 'views/todoAdd.html'
             })
