@@ -6,8 +6,8 @@
     <div class="row">&nbsp;</div>
     <div class="row">
     
-            <form name="frmtodo" role="form" novalidate>
-            <div class="col-sm-12">
+            <div class="col-sm-8">
+                <form name="frmtodo" role="form" novalidate>
                 
                     <div class="form-group">
                         <label>Title</label>
@@ -32,14 +32,24 @@
                        </span>
                     </div>
                     
+                    
                     <div class="form-group">
                         <label>Start Date</label>
-                        <input ng-model="todos.startDate" name="startDate" class="form-control" type="text"  />
+                        <input readonly ng-model="todos.startDate" type="text" class="form-control" name="startDate"  datepicker-popup="{{format}}" is-open="openedStartDate" close-text="Close" style="width: 90%;" />
+                        
+                        <span class="">
+                            <button type="button" class="btn btn-default" ng-click="openStartDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
                     </div>
 
                     <div class="form-group">
                         <label>End Date</label>
-                        <input ng-model="todos.endDate" name="endDate" class="form-control" type="text"  />
+                        <input readonly ng-model="todos.endDate" type="text" class="form-control" name="endDate"  datepicker-popup="{{format}}" is-open="openedEndDate" close-text="Close" style="width: 90%;"  />
+
+                        <span class="" style="width: 50px; ">
+                            <button type="button" class="btn btn-default" ng-click="openEndDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+
                     </div>
 
                     <div class="form-group">
@@ -54,9 +64,9 @@
 
                     <div class="form-group">
                         
-                        <label>Status&nbsp;</label>
-                        <select name="status" ng-model="todos.status" required ng-options="el.name for el in status track by el.id" style="width: 200px; height: 30px;" >
-                            <option  value="">--Please select--</option>
+                        <label>Status</label>
+                        <select name="status" ng-model="todos.status" required ng-options="el.name for el in statuses track by el.id" style="width: 200px; height: 30px;" >
+                            <option value="">--Please select--</option>
                         </select>
                         <span style="color:red" ng-show="frmtodo.status.$dirty && frmtodo.status.$invalid">
                             <span ng-show="frmtodo.status.$error.required">Status is required</span>
@@ -65,13 +75,11 @@
 
                     <br />
                     <div class="">
-                        <button class="btn btn-primary " ng-class="" ng-disabled="frmtodo.$invalid" ng-click="saveProcesser()">Save</button>
+                        <button class="btn btn-primary " ng-class="" ng-disabled="frmtodo.$invalid" ng-click="saveTodo()">Save</button>
                         <button class="btn btn-primary " ng-click="back()" style="margin-right: 15px;">Back</button>
                     </div>
-            </div>
-
             </form>
+        </div>
 
-    
     </div>
 </div>

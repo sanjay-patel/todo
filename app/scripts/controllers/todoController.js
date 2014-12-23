@@ -17,4 +17,16 @@ angular.module('todoApp')
             $state.transitionTo('todo-add', {id: id});    
         };
         
+        $scope.add = function() {
+            $state.transitionTo('todo-add');
+        }
+        
+        $scope.remove = function(id) {
+            var conf = confirm('Are you sure to delete record?');
+            if (conf) {
+                todoService.remove(id);   
+                $scope.todoList = todoService.getAll(); 
+            }
+        }
+        
     }]);

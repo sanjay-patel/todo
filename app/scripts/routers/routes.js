@@ -9,10 +9,22 @@ angular.module('todoApp')
                 controller: 'todoController',
                 templateUrl: 'views/todoList.html',
                 resolve: {
-                    promiseObj: function(todoService) {
-                        var promise = todoService.getFromAPI();
-                        console.log(promise);
-                        return promise;    
+                    promiseObj: function(todoService, localStorageService) {
+                        
+                        if (!localStorageService.get('todoloaded')) {
+                            var promise = todoService.getFromAPI();
+                            
+                            promise.then(function(response) {
+                                if (response.status === 200) {
+                                    localStorageService.set('todoloaded', true);
+                                }    
+                            }, function() {});
+                            
+                            return promise;    
+                        } else {
+                            return null;
+                        }
+                        
                        //return $http({method: 'GET', url: 'data/todoData.json'});
                     }
                 
