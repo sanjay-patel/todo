@@ -2,15 +2,6 @@
 
 angular.module('todoApp')
 .service('todoService', function($http, localStorageService) {
-    var isloaded = false, todos = [];
-    
-    var setLoaded = function(val) {
-        isloaded = val;    
-    };
-    
-    var getLoaded = function() {
-        return isloaded;
-    };
     
     var add = function(val) {
         var todos = localStorageService.get('todos');
@@ -31,13 +22,13 @@ angular.module('todoApp')
         todos[ todo.id ] = todo;
 
         localStorageService.set('todos', todos);
-    }
+    };
     
     var remove = function(id) {
         var todos = localStorageService.get('todos');
         delete todos[ id ]; 
         localStorageService.set('todos', todos);
-    }
+    };
     
     var getAll = function () {
         var todos = localStorageService.get('todos');
@@ -89,8 +80,6 @@ angular.module('todoApp')
     return {
         getDetail: getDetail,
         getFromAPI: getFromAPI,
-        setLoaded: setLoaded,
-        getLoaded: getLoaded,
         getAll: getAll,
         add: add,
         update: update,

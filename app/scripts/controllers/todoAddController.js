@@ -12,7 +12,7 @@ angular.module('todoApp')
         var id = $stateParams.id;
         var mode = '';
         
-        if (angular.isDefined(id) && id != '')  {
+        if (angular.isDefined(id) && id !== '')  {
             mode = 'Update';
             $scope.todos = todoService.getDetail(id);
             
@@ -68,8 +68,7 @@ angular.module('todoApp')
             startingDay: 1
         };
 
-        $scope.formats = ['yyyy-MM-dd','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        $scope.format = $scope.formats[1];    
+        $scope.format = 'dd-MMMM-yyyy';    
     
 
         $scope.back = function() {
@@ -87,6 +86,6 @@ angular.module('todoApp')
                 $state.transitionTo('todo-list');
             }
             
-        }
+        };
         
     }]);
